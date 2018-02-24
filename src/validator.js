@@ -206,9 +206,11 @@ function isType(type, item, nullAllowed = false) {
 
   if (Array === type && Array.isArray(item)) return true
 
-  return some(TYPES,
+  if (some(TYPES,
     (TYPE, key) => (TYPE === type && typeof item === key) // eslint-disable-line valid-typeof
-  )
+  )) return true
+
+  return item instanceof type
 }
 
 function ensureOne(items) {
